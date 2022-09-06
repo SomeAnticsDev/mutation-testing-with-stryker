@@ -13,7 +13,9 @@
         }
 
         submit() {
-            if (!this.ageCheck || this.isAllowedToBuyAlcohol({ age: this.age })) {
+			const ignoreAge = this.ageCheck === false;
+			const canBuyAlcohol = (this.ageCheck === true) && this.isAllowedToBuyAlcohol({ age: this.age});
+            if (ignoreAge || canBuyAlcohol) {
                 this.error = null;
                 this.$location.path('/success');
             } else {
@@ -27,7 +29,7 @@
         }
 
         isAllowedToBuyAlcohol(customer) {
-            return customer.age > 18;
+            return customer.age >= 18;
         }
     }
 

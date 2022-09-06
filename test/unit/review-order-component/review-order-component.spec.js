@@ -45,6 +45,13 @@ describe('PlaceOrderComponent', () => {
             sut.submit();
             expect(locationMock.path).toHaveBeenCalled();
         });
+
+		it('should allow if user is 18', () => {
+            sut.ageCheck = true;
+            sut.age = 18;
+            sut.submit();
+            expect(locationMock.path).toHaveBeenCalled();
+        });
         
         it('should allow if user is 24', () => {
             sut.ageCheck = true;
